@@ -14,6 +14,7 @@ parser = argparse.ArgumentParser("VAE")
 
 parser.add_argument("--latent_dim", type=int, default=None, help="Latent dimension")
 parser.add_argument("--hidden_channels", type=int, default=None, help="Number of hidden channels")
+parser.add_argument("--n_layers", type=int, default=None, help="Number of hidden layers")
 parser.add_argument("--n_samples", type=int, default=None, help="Number of samples")
 parser.add_argument("--model_path", type=str, default="./tmp/best.pth", help="Path for model")
 parser.add_argument("--save_dir", type=str, default="./tmp", help="Directory for outputs")
@@ -34,7 +35,7 @@ def main(args):
     loader = {}
     loader = torch.utils.data.DataLoader(test_dataset, batch_size=1, shuffle=False)
 
-    model = VAEbaseline(args.in_channels, args.hidden_channels, latent_dim=args.latent_dim)
+    model = VAEbaseline(args.in_channels, args.hidden_channels, latent_dim=args.latent_dim, n_layers=args.n_layers)
     print(model)
     
     if torch.cuda.is_available():
