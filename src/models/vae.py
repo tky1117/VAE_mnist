@@ -57,6 +57,8 @@ class Decoder(nn.Module):
         for n in range(n_layers):
             if n == 0:
                 net.append(nn.Linear(latent_dim, hidden_channels))
+            elif n == n_layers-1:
+                net.append(nn.Linear(hidden_channels, out_channels))
             else:
                 net.append(nn.Linear(hidden_channels, hidden_channels))
             if n == n_layers-1:
