@@ -244,7 +244,7 @@ class Tester:
                 x_target = x_target.cuda()
             x_target = x_target.unsqueeze(dim=0)
             y_target, z_target, mean, var = self.model(x_target, return_params=True)
-            im = y1.view(-1, 28, 28).permute(1, 2, 0).cpu().squeeze().detach().numpy()
+            im = y_target.view(-1, 28, 28).permute(1, 2, 0).cpu().squeeze().detach().numpy()
             ax_target = fig.add_subplot(1, 2, 2, xticks=[], yticks=[])
             ax_target.set_title('Target image')
             ax_target.imshow(im, 'gray')
